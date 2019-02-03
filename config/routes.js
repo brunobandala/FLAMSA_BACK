@@ -33,7 +33,7 @@ module.exports.routes = {
     * @description servicios de Proveedores
     */
     "post /proveedores" : "ProvidersController.createProvider",
-    "get /proveedores/:ProviderId" : "ProductsController.getProvider",
+    "get /proveedores/:ProviderId" : "ProvidersController.getProvider",
 
     /** 
     * @author Erick_Ismael_López_Ferrari
