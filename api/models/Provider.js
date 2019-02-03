@@ -11,8 +11,10 @@ module.exports = {
         businessName : {type: 'string', required : true,columnName:"business_name"},
         RFC : {type : 'string', required : true, unique : true},
         fiscalAddress : {type : 'string', required : true,columnName:'fiscal_address'},
+        officeAddress : {type : 'string', required : true,columnName:'office_address'},
         personalContact : {type : 'string', required : true,columnName:'personal_contact'},
         contact : {type : 'string', required : true},
+        filename : {type : 'string', required : true},
         creditDays : {type : 'number', defaultsTo : 0,columnName:'credit_days'},
         details : {type : 'string', required : false}
     }
