@@ -13,7 +13,7 @@ var createClient = async function(client){
 };
 
 var getAllClients = async function(){
-    var clients = await Client.find({select: ['name']});
+    var clients = await Client.find({select: ['businessName']});
     return clients;
 }
 

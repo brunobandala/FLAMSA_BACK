@@ -7,28 +7,22 @@
 
 var getAllClients = async function(req,res){
     var response = await ClientService.getAllClients();
-    return res.json(response);
+    var formatedClients = [];
+
+    for(var index in providers){
+        var provider = {};
+        provider.id = providers[index].id;
+        provider.name = providers[index].businessName;
+        formatedClients[index] = provider;
+    }
+
+    return res.json(formatedClients);
 }
 
 var createClient = async function(req,res){
     sails.log("starting createClient method");
-    var client = req.body;
-
-    if(client.name === undefined){
-       return res.badRequest("username is required");
-    }
-    if(client.RFC === undefined){
-        return res.badRequest("RFC is required");
-    }
-    if(client.phoneNumber === undefined){
-        return res.badRequest("phoneNumber is required");
-    }
-    if(client.email === undefined){
-        return res.badRequest("email is required");
-    }
-    
+    var client = req.body;    
     var response = await ClientService.createClient(client);
-
     return res.json(response);
     sails.log("createClient method finished....");
 };
