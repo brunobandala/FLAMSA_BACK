@@ -14,6 +14,8 @@ module.exports ={
         address: {type : 'string', required: false},
         phoneNumber : {type : 'number', required : true,columnName:'phone_number'},
         email: {type : 'string', required : true, unique : true}
-    }
+    },customToJSON : function(){
+        return sails.config.globals.formatObject(this);
+      }
 
 };

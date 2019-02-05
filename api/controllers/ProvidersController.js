@@ -48,7 +48,21 @@ var getProvider = async function(req,res){
     sails.log("getProvider method finished");
 };
 
+var getAllProviders = async function(req, res){
+    var providers = await ProviderService.getAllProviders();
+    var formatedProviders = [];
+
+    for(var index in providers){
+        var provider = {};
+        provider.id = providers[index].id;
+        provider.name = providers[index].businessName;
+        formatedProviders[index] = provider;
+    }
+    return res.json(formatedProviders);
+}
+
 module.exports = {
     "createProvider" : createProvider,
-    "getProvider"    : getProvider
+    "getProvider"    : getProvider,
+    "getAllProviders" : getAllProviders
 };

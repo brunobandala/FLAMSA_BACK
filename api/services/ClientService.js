@@ -12,6 +12,11 @@ var createClient = async function(client){
     sails.log("createClient method finished!....");
 };
 
+var getAllClients = async function(){
+    var clients = await Client.find({select: ['name']});
+    return clients;
+}
+
 var readClient = async function(clientId){
     sails.log("starting getClient method");
     var client = await Client.findOne({id : clientId});
@@ -40,5 +45,6 @@ module.exports = {
     "createClient" : createClient,
     "readClient" : readClient,
     "updateClient" : updateClient,
-    "deleteClient" : deleteClient
+    "deleteClient" : deleteClient,
+    "getAllClients" : getAllClients
 };

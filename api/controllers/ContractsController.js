@@ -8,8 +8,8 @@
 var createContract = async function(req,res){
     sails.log("starting createContract method");
     var Contract = req.body;
-    
-    var response = await ContractService.createContract(Contract);
+    var userId = req.session.userId;
+    var response = await ContractService.createContract(Contract,userId);
 
     return res.json(response);
     sails.log("createContract method finished....");
@@ -31,7 +31,18 @@ var getContract = async function(req,res){
     sails.log("getContract method finished");
 };
 
+var searchContract = async function(req,res){
+    sails.log("starting searchContract method");
+    var contract = null;
+
+    contract = await ContractService.searchContract(req.body);
+
+    return res.json(contract);
+
+}
+
 module.exports = {
     "createContract" : createContract,
-    "getContract" : getContract
+    "getContract" : getContract,
+    "searchContract" : searchContract
 };

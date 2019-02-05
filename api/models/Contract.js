@@ -8,10 +8,11 @@
 module.exports = {
 
     attributes : {
-        providerId : {model : 'provider',required:true, columnName:'provider_id'},
-        clientId : {model:'client',required:true,columnName:'client_id'},
-        routeId: {model:'route',required:true,columnName:'route_id'},
-        productId:{model:'product',required:true,columnName:'product_id'},
+        creationUser : {type : 'json', required:true},
+        provider : {type : 'json',required:true},
+        client : {type : 'json',required:true},
+        route: {type : 'json',required:true},
+        product:{type : 'json',required:true},
         providerRate:{type:'number',required:true,columnName:'provider_rate'},
         clientRate:{type:'number',required:true,columnName:'client_rate'},
         utility:{type:'number',required:true},
@@ -23,8 +24,9 @@ module.exports = {
         paymentDate:{type: 'string', columnType: 'datetime',columnName:'payment_date',required:false},
         providerBillDate:{type: 'string', columnType: 'datetime',columnName:'provider_bill_date',required:false},
         flamsaBillDate:{type: 'string', columnType: 'datetime',columnName:'flamsa_bill_date',required:false},
-        description:{type:'string',required:false}
-
-    }
-
+        description:{type:'string',required:false},
+        status : {type:'string',required:true}
+    },customToJSON : function(){
+        return sails.config.globals.formatObject(this);
+      }
 };

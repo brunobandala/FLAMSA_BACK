@@ -23,6 +23,11 @@ var readProduct = async function(productId){
     sails.log("getProduct finished");
 };
 
+var getAllProducts = async function(){
+    var products = await Product.find({select: ['name']});
+    return products;
+}
+
 var updateProduct = async function(productId, data){
     sails.log("starting updateProduct method");
     var product = await Product.update({id:productId}).set(data);
@@ -40,5 +45,6 @@ module.exports = {
     "createProduct" : createProduct,
     "readProduct" : readProduct,
     "updateProduct" : updateProduct,
-    "deleteProduct" : deleteProduct
+    "deleteProduct" : deleteProduct,
+    "getAllProducts" : getAllProducts
 };

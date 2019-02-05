@@ -5,7 +5,7 @@
  * @description Controller con la definición de los servicios de Rutas
 */
 
-var createRoutes = async function(req,res){
+var createRoute = async function(req,res){
     sails.log("starting createRoutes method");
     var Routes = req.body;
 
@@ -22,19 +22,19 @@ var createRoutes = async function(req,res){
         return res.badRequest("personalContact is required");
     }
 
-    var response = await RoutesService.createRoutes(Routes);
+    var response = await RoutesService.createRoute(Routes);
 
     return res.json(response);
     sails.log("createRoutes method finished....");
 };
 
-var getRoutes = async function(req,res){
+var getRoute = async function(req,res){
     
     sails.log("starting getRoutes method");
-    var RoutesId = req.param("RoutesId");
+    var RoutesId = req.param("RouteId");
     var Routes   = null;
 
-    RoutesService.readRoutes(RoutesId)
+    RoutesService.readRoute(RoutesId)
     .then(response =>{
         res.json(response);
     })
@@ -45,7 +45,13 @@ var getRoutes = async function(req,res){
     sails.log("getRoutes method finished");
 };
 
+var getAllRoutes = async function(req,res){
+    var routes = await RoutesService.getAllRoutes();
+    return res.json(routes);
+}
+
 module.exports = {
-    "createRoutes" : createRoutes,
-    "getRoutes"    : getRoutes
+    "createRoute" : createRoute,
+    "getRoute"    : getRoute,
+    "getAllRoutes" : getAllRoutes
 };

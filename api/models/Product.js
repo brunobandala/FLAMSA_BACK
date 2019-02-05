@@ -12,6 +12,8 @@ module.exports = {
         type : {type : 'string', required : true},
         trailerType : {type : 'string', required : true,columnName:'trailer_type'},
         description : {type : 'string', required : false}
-    }
+    },customToJSON : function(){
+        return sails.config.globals.formatObject(this);
+      }
 
 };

@@ -5,6 +5,11 @@
  * @description Controller con la definición de los servicios de Clientes
 */
 
+var getAllClients = async function(req,res){
+    var response = await ClientService.getAllClients();
+    return res.json(response);
+}
+
 var createClient = async function(req,res){
     sails.log("starting createClient method");
     var client = req.body;
@@ -46,5 +51,6 @@ var getClient = async function(req,res){
 
 module.exports = {
     "createClient" : createClient,
-    "getClient" : getClient
+    "getClient" : getClient,
+    "getAllClients" : getAllClients
 };

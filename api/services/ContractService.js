@@ -5,9 +5,66 @@
  * @description Servicios destinados a la interacción con Contratos
 */
 
-var createContract = async function(contract){
+var searchContract = async function(searchContract){    
+
+    var contractQuery = {};
+    if(searchContract.bill_flamsa != undefined ){
+        contractQuery.flamsaBill = searchContract.bill_flamsa;
+    }
+
+    if(searchContract.bill_provider != undefined){
+        contractQuery.providerBill = searchContract.bill_provider;
+    }
+
+    if(searchContract.provider != undefined && searchContract.provider != ''){
+        contractQuery["provider.businessName"] = {'contains' : searchContract.provider};
+    }
+
+    if(searchContract.client != undefined && searchContract.client != ''){
+        contractQuery["client.name"] = {"contains" : searchContract.provider};
+    }
+
+    if(searchContract.product != undefined && searchContract.product != ''){
+        contractQuery["product.name"] = {"contains" :searchContract.provider};
+    }
+
+    if(searchContract.route != undefined && searchContract.route != ''){
+        contractQuery["route.name"] = {"contains" :searchContract.provider};
+    }
+
+    if(searchContract.user != undefined && searchContract.user != ''){
+        contractQuery['creationUser.name'] = {"contains" :searchContract.user};
+    }
+
+    var response = await Contract.find({where : contractQuery}).meta({enableExperimentalDeepTargets:true});
+
+    return response;
+
+}
+
+var createContract = async function(contract, userId){
     sails.log("starting createContract method");
-    var response = await Contract.create(contract).fetch();
+
+    contract.creationUser = await UserService.readUser(userId);
+
+    if(contract.provider != null){
+       contract.provider = await ProviderService.readProvider(contract.provider);
+    }
+
+    if(contract.client != null){
+        contract.client = await ClientService.readClient(contract.client);
+    }
+
+    if(contract.route != null){
+        contract.route = await RoutesService.readRoute(contract.route);
+    }
+
+    if(contract.product != null){
+        contract.product = await ProductService.readProduct(contract.product);
+    }
+
+    var response = await Contract.create(
+        sails.config.globals.formatObject(contract)).fetch();
     return response;
     sails.log("createContract method finished!....");
 };
@@ -40,6 +97,6 @@ module.exports = {
     "createContract" : createContract,
     "readContract" : readContract,
     "updateContract" : updateContract,
-    "deleteContract" : deleteContract
-};+
-3
+    "deleteContract" : deleteContract,
+    "searchContract" : searchContract
+};

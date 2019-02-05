@@ -15,6 +15,8 @@ module.exports = {
         phone : {type: 'number', required: true},
         email : {type: 'string', required: true},
         password : {type: 'string', required: true}
-    }
+    },customToJSON : function(){
+        return sails.config.globals.formatObject(this);
+      }
 
 };

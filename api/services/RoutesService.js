@@ -23,6 +23,10 @@ var readRoute = async function(routeId){
     sails.log("getRoute finished");
 };
 
+var getAllRoutes = async function(){
+    return await Route.find({select: ['name']});
+}
+
 var updateRoute = async function(routeId, data){
     sails.log("starting updateRoute method");
     var route = await Route.update({id:routeId}).set(data);
@@ -40,5 +44,6 @@ module.exports = {
     "createRoute" : createRoute,
     "readRoute" : readRoute,
     "updateRoute" : updateRoute,
-    "deleteRoute" : deleteRoute
+    "deleteRoute" : deleteRoute,
+    "getAllRoutes" : getAllRoutes
 };

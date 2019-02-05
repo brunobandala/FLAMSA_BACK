@@ -7,7 +7,8 @@
 
 module.exports = async function (req, res, proceed) {
 
-    if (req.session.userId) {        
+    if (req.session.userId) {
+      req.body = sails.config.globals.formatObject(req.body);
       return proceed();
     }
   

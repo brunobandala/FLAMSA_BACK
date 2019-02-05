@@ -41,7 +41,13 @@ var getProduct = async function(req,res){
     sails.log("getProduct method finished");
 };
 
+var getAllProducts = async function(req,res){
+    var response = await ProductService.getAllProducts();
+    return res.json(response);
+}
+
 module.exports = {
     "createProduct" : createProduct,
-    "getProduct" : getProduct
+    "getProduct" : getProduct,
+    "getAllProducts" : getAllProducts
 };

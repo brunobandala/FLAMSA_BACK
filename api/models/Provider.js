@@ -17,6 +17,8 @@ module.exports = {
         filename : {type : 'string', required : true},
         creditDays : {type : 'number', defaultsTo : 0,columnName:'credit_days'},
         details : {type : 'string', required : false}
-    }
+    },customToJSON : function(){
+        return sails.config.globals.formatObject(this);
+      }
 
 };

@@ -12,6 +12,8 @@ module.exports = {
         origin : {type : 'string', required : true},
         destination : {type : 'string', required : true},
         distance : {type : 'string', required : true}
-    }
+    },customToJSON : function(){
+        return sails.config.globals.formatObject(this);
+      }
 
 };

@@ -23,6 +23,10 @@ var readProvider = async function(providerId){
     sails.log("getProvider finished");
 };
 
+var getAllProviders = async function(){
+    return await Provider.find({select: ['businessName']});
+}
+
 var updateProvider = async function(providerId, data){
     sails.log("starting updateProvider method");
     var provider = await Provider.update({id:providerId}).set(data);
@@ -40,5 +44,6 @@ module.exports = {
     "createProvider" : createProvider,
     "readProvider"   : readProvider,
     "updateProvider" : updateProvider,
-    "deleteProvider" : deleteProvider
+    "deleteProvider" : deleteProvider,
+    "getAllProviders"  : getAllProviders
 };

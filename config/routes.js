@@ -12,6 +12,7 @@ module.exports.routes = {
     * @description servicios de Cliente
     */
     "post /cliente" : "ClientsController.createClient",
+    "get /cliente" : "ClientsController.getAllClients",
     "get /cliente/:clientId" : "ClientsController.getClient",
 
     /** 
@@ -20,12 +21,14 @@ module.exports.routes = {
     */
     "post /contratos" : "ContractsController.createContract",
     "get /contratos/:ContractId" : "ContractsController.getContract",
+    "post /contratos/search" : "ContractsController.searchContract",
 
     /** 
     * @author Erick_Ismael_López_Ferrari
     * @description servicios de Productos
     */
     "post /productos" : "ProductsController.createProduct",
+    "get /productos" : "ProductsController.getAllProducts",
     "get /productos/:ProductId" : "ProductsController.getProduct",
 
     /** 
@@ -33,14 +36,16 @@ module.exports.routes = {
     * @description servicios de Proveedores
     */
     "post /proveedores" : "ProvidersController.createProvider",
+    "get /proveedores" : "ProvidersController.getAllProviders",
     "get /proveedores/:ProviderId" : "ProvidersController.getProvider",
 
     /** 
     * @author Erick_Ismael_López_Ferrari
     * @description servicios de Rutas
     */
-    "post /rutas" : "RoutesController.createRoutes",
-    "get /rutas/:RouteId" : "RoutesController.getRoutes",
+    "post /rutas" : "RoutesController.createRoute",
+    "get /rutas"  : "RoutesController.getAllRoutes",
+    "get /rutas/:RouteId" : "RoutesController.getRoute",
     
     /** 
     * @author Erick_Ismael_López_Ferrari
