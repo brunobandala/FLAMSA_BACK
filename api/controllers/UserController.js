@@ -43,8 +43,15 @@ var loginUser= async function(req, res){
 
 }
 
+var logoutUser= async function(req, res){
+    req.session.destroy();
+    sails.log("logoutUser method finished");
+    res.ok();
+}
+
 module.exports = {
     "createUser" : createUser,
     "getUser"    : getUser,
-    "loginUser"  : loginUser
+    "loginUser"  : loginUser,
+    "logoutUser" : logoutUser
 };

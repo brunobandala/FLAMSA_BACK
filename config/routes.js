@@ -1,6 +1,5 @@
 module.exports.routes = {
 
-
     /** 
     * @author Erick_Ismael_López_Ferrari
     * @description servicios de Ping
@@ -22,6 +21,8 @@ module.exports.routes = {
     "post /contratos" : "ContractsController.createContract",
     "get /contratos/:ContractId" : "ContractsController.getContract",
     "post /contratos/search" : "ContractsController.searchContract",
+    "put /contratos/:ContractId" : "ContractsController.updateContract",
+    "delete /contratos/:ContractId" : "ContractsController.deleteContract",
 
     /** 
     * @author Erick_Ismael_López_Ferrari
@@ -46,7 +47,15 @@ module.exports.routes = {
     "post /rutas" : "RoutesController.createRoute",
     "get /rutas"  : "RoutesController.getAllRoutes",
     "get /rutas/:RouteId" : "RoutesController.getRoute",
-    
+
+    /**
+    * @author Erick_Ismael_López_Ferrari
+    * @description servicios de Tramos
+    */
+    "post /tramos" : "StretchController.createStretch",
+    "get /tramos"  : "StretchController.getAllStretchs",
+    "get /tramos/:StretchId" : "StretchController.readStretch",
+
     /** 
     * @author Erick_Ismael_López_Ferrari
     * @description servicios de Archivos
@@ -59,6 +68,7 @@ module.exports.routes = {
     */
     "post /user" : "UserController.createUser",
     "get /user/:UserId" : "UserController.getUser",
-    "post /login" : "UserController.loginUser"
+    "post /login" : "UserController.loginUser",
+    "post /logout" : "UserController.logoutUser"
 
 };

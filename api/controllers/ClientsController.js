@@ -9,11 +9,11 @@ var getAllClients = async function(req,res){
     var response = await ClientService.getAllClients();
     var formatedClients = [];
 
-    for(var index in providers){
-        var provider = {};
-        provider.id = providers[index].id;
-        provider.name = providers[index].businessName;
-        formatedClients[index] = provider;
+    for(var index in response){
+        var client = {};
+        client.id = response[index].id;
+        client.name = response[index].businessName;
+        formatedClients[index] = client;
     }
 
     return res.json(formatedClients);

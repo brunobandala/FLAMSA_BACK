@@ -4,7 +4,6 @@
  * @author Erick_Ismael_López_Ferrari
  * @description Servicios destinados a la interacción con Clientes
 */
-
 var createClient = async function(client){
     sails.log("starting createClient method");
     var response = await Client.create(client).fetch();

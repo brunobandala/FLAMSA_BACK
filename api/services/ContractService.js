@@ -21,15 +21,15 @@ var searchContract = async function(searchContract){
     }
 
     if(searchContract.client != undefined && searchContract.client != ''){
-        contractQuery["client.name"] = {"contains" : searchContract.provider};
+        contractQuery["client.businessName"] = {"contains" : searchContract.client};
     }
 
     if(searchContract.product != undefined && searchContract.product != ''){
-        contractQuery["product.name"] = {"contains" :searchContract.provider};
+        contractQuery["product.name"] = {"contains" :searchContract.product};
     }
 
     if(searchContract.route != undefined && searchContract.route != ''){
-        contractQuery["route.name"] = {"contains" :searchContract.provider};
+        contractQuery["route.name"] = {"contains" :searchContract.route};
     }
 
     if(searchContract.user != undefined && searchContract.user != ''){
@@ -84,12 +84,14 @@ var updateContract = async function(contractId, data){
     sails.log("starting updateContract method");
     var contract = await Contract.update({id:contractId}).set(data);
     sails.log("updateContract method finished!....");
+    return contract;
 };
 
 var deleteContract = async function(contractId){
     sails.log("starting deleteContract method");
     var contract = await Contract.destroyOne({id:contractId});
     sails.log("deleteContract finished");
+    return contract;
 
 };
 

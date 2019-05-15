@@ -41,8 +41,24 @@ var searchContract = async function(req,res){
 
 }
 
+var deleteContract = async function(req,res){
+    sails.log("starting deleteContract");
+    var contractId = req.param("ContractId");
+    await ContractService.deleteContract(contractId);
+    res.ok();
+}
+
+var updateContract = async function(req,res){
+    sails.log("Starting updateContract");
+    var contractId = req.param("ContractId");
+    await ContractService.updateContract(contractId,req.body);
+    res.ok();
+}
+
 module.exports = {
     "createContract" : createContract,
     "getContract" : getContract,
-    "searchContract" : searchContract
+    "searchContract" : searchContract,
+    "deleteContract" : deleteContract,
+    "updateContract" : updateContract
 };
